@@ -1,9 +1,16 @@
 import { useFetchGif } from "../../hooks/useFetchGifs";
 import GifCard from "../GifCard/GifCard";
+import styles from "./GifGrid.module.css";
 
-export const GifGrid = ({ category }) => {
+export const GifGrid = ({ category, deleteCategory } ) => {
+
+  
+
+  console.log(category)
   //custom hooks
   const { images, isLoading } = useFetchGif(category);
+
+
 
   return (
     <>
@@ -11,8 +18,11 @@ export const GifGrid = ({ category }) => {
         <h3>Cargando....</h3>
       ) : (
         <>
-          <h3>{category}</h3>
-          <ol className="card-grid">
+          <div className={styles.title}>
+            <h3>{category}</h3>
+            <h3 className={styles.buttonDelete} onClick={deleteCategory}>(Borrar)</h3>
+          </div>
+          <ol className={styles.containerGifs}>
             {images.map((listGif) => (
               <GifCard listGif={listGif} key={listGif.id} />
             ))}
@@ -22,5 +32,3 @@ export const GifGrid = ({ category }) => {
     </>
   );
 };
-
-

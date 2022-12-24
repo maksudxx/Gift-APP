@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from './AddCategory.module.css'
 
 export const AddCategory = ({ onNewCategory }) => {
   const [input, setInput] = useState("");
@@ -10,7 +11,7 @@ export const AddCategory = ({ onNewCategory }) => {
     e.preventDefault();
     if (input.trim().length <= 1) return;
     //esta funcion agrega un nuevo valor a la lista
-    onNewCategory(input)
+    onNewCategory(input);
     setInput("");
   };
 
@@ -18,13 +19,11 @@ export const AddCategory = ({ onNewCategory }) => {
     <form onSubmit={onSubmit}>
       <input
         type="text"
-        placeholder="Buscar Gif"
+        placeholder="Buscar Gifs..."
         value={input}
         onChange={onInputChanged}
+        className={styles.search}
       />
-      {/* <input type="submit" value="Agregar"/> */}
     </form>
   );
 };
-
-

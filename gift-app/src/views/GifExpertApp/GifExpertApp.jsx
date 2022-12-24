@@ -1,6 +1,6 @@
 import { useState } from "react";
-import {AddCategory, GifGrid} from "../../components";
-
+import { AddCategory, GifGrid } from "../../components";
+import styles from "./GifExpertApp.module.css";
 const GifExpertApp = () => {
   const [categories, setCategories] = useState(["Dragon Ball"]);
 
@@ -9,17 +9,30 @@ const GifExpertApp = () => {
     setCategories([newCategory, ...categories]);
   };
 
+  const deleteCategory = (cat) => {
+    setCategories(categories.filter((f) => f !== cat));
+  };
+
   return (
-    <>
-      <h1>GIF Expert App</h1>
+    <div className={styles.container}>
+      <h2 className={styles.title}>GIF Expert App</h2>
       <AddCategory onNewCategory={onAddCategory} />
 
-      {categories.map((category) => (
-        <GifGrid key={category} category={category} />
+      {categories.map((category, index) => (
+       <>
+       
+        <GifGrid
+         key={index}
+          category={category}
+          deleteCategory={deleteCategory}
+        />
+       </>
+        
+        
+        
       ))}
-    </>
+    </div>
   );
 };
-
 
 export default GifExpertApp;
