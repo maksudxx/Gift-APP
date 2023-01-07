@@ -9,9 +9,9 @@ const GifExpertApp = () => {
     setCategories([newCategory, ...categories]);
   };
 
-  const deleteCategory = (cat) => {
-    setCategories(categories.filter((f) => f !== cat));
-  };
+  // const deleteCategory = (cat) => {
+  //   setCategories(categories.filter((f) => f !== "Dragon Ball"));
+  // };
 
   return (
     <div className={styles.container}>
@@ -19,17 +19,9 @@ const GifExpertApp = () => {
       <AddCategory onNewCategory={onAddCategory} />
 
       {categories.map((category, index) => (
-       <>
-       
-        <GifGrid
-         key={index}
-          category={category}
-          deleteCategory={deleteCategory}
-        />
-       </>
-        
-        
-        
+        <>
+          <GifGrid key={index} category={category} />
+        </>
       ))}
     </div>
   );
